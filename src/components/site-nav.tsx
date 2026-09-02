@@ -17,14 +17,10 @@ export function SiteNav() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
-        <Link to="/" className="flex items-center gap-2">
-          <span className="grid h-8 w-8 place-items-center rounded-md bg-primary text-primary-foreground font-display text-xl leading-none pt-1">
-            R
-          </span>
-          <span className="font-display text-2xl tracking-wide">
-            Ride<span className="text-primary">Vibe</span>
-          </span>
+        <Link to="/" aria-label="RideVibe home">
+          <BrandLogo />
         </Link>
+
 
         <nav className="hidden items-center gap-1 md:flex">
           {links.map((l) => (
