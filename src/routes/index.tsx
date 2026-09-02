@@ -37,24 +37,119 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
+function CarWithFriends() {
+  // 4 friends in the car, one waving out of the window
+  const friends = [
+    { x: 74, hair: "hsl(var(--foreground))", delay: "0ms" },
+    { x: 106, hair: "hsl(var(--primary))", delay: "120ms" },
+    { x: 140, hair: "hsl(var(--foreground))", delay: "240ms" },
+    { x: 172, hair: "hsl(var(--primary))", delay: "60ms" },
+  ];
+  return (
+    <svg
+      viewBox="0 0 260 120"
+      className="h-32 w-full"
+      role="img"
+      aria-label="A car full of friends driving off on a road trip"
+    >
+      {/* speed streaks */}
+      {[30, 48, 66].map((y, i) => (
+        <rect
+          key={y}
+          x="200"
+          y={y}
+          width="46"
+          height="2"
+          rx="1"
+          className="speed-streak fill-primary/50"
+          style={{ animationDelay: `${i * 140}ms` }}
+        />
+      ))}
+
+      <g className="car-drive">
+        <g className="car-bounce">
+          {/* body */}
+          <path
+            d="M22 86 L30 62 Q34 52 46 52 L172 52 Q188 52 196 62 L212 78 Q220 80 220 88 L220 92 Q220 96 214 96 L28 96 Q22 96 22 92 Z"
+            className="fill-primary"
+          />
+          {/* windows */}
+          <path
+            d="M50 60 L44 78 L108 78 L108 60 Z M116 60 L116 78 L186 78 L172 62 Q168 60 162 60 Z"
+            className="fill-background/80"
+          />
+          {/* friends */}
+          {friends.map((f) => (
+            <g
+              key={f.x}
+              className="friend-bob"
+              style={{ animationDelay: f.delay }}
+            >
+              <circle cx={f.x} cy={68} r="7" fill={f.hair} />
+              <path
+                d={`M${f.x - 8} 78 Q${f.x} 70 ${f.x + 8} 78 Z`}
+                fill={f.hair}
+                opacity="0.7"
+              />
+            </g>
+          ))}
+          {/* waving hand out of window */}
+          <g style={{ transformOrigin: "96px 52px" }}>
+            <rect
+              x="92"
+              y="34"
+              width="6"
+              height="20"
+              rx="3"
+              className="wave-hand fill-foreground"
+            />
+          </g>
+          {/* headlight beam */}
+          <path
+            d="M220 80 L252 70 L252 94 L220 90 Z"
+            className="fill-primary/30"
+          />
+          {/* wheels */}
+          <g style={{ transformOrigin: "66px 96px" }}>
+            <circle cx="66" cy="96" r="14" className="fill-foreground" />
+            <g className="wheel-spin" style={{ transformOrigin: "66px 96px" }}>
+              <rect x="64" y="84" width="4" height="24" className="fill-primary" />
+              <rect x="54" y="94" width="24" height="4" className="fill-primary" />
+            </g>
+          </g>
+          <g>
+            <circle cx="186" cy="96" r="14" className="fill-foreground" />
+            <g className="wheel-spin" style={{ transformOrigin: "186px 96px" }}>
+              <rect x="184" y="84" width="4" height="24" className="fill-primary" />
+              <rect x="174" y="94" width="24" height="4" className="fill-primary" />
+            </g>
+          </g>
+          {/* roof luggage */}
+          <rect x="82" y="44" width="48" height="9" rx="3" className="fill-foreground/80" />
+          <rect x="94" y="38" width="24" height="7" rx="2" className="fill-primary/70" />
+        </g>
+      </g>
+    </svg>
+  );
+}
+
 function Loader() {
   return (
-    <div className="fixed inset-0 z-[100] grid place-items-center bg-background">
-      <div className="w-64">
+    <div className="fixed inset-0 z-[100] grid place-items-center overflow-hidden bg-background">
+      <div className="w-[22rem] max-w-[90vw]">
         <p className="text-center font-display text-3xl tracking-widest text-primary">
           RIDEVIBE
         </p>
-        <div className="relative mt-6 h-10">
-          <Bike className="absolute top-0 h-8 w-8 text-foreground headlight" />
-        </div>
+        <CarWithFriends />
         <div className="h-px w-full road-lines" />
         <p className="mt-4 text-center text-xs uppercase tracking-[0.3em] text-muted-foreground">
-          Starting engine
+          Getting the squad in
         </p>
       </div>
     </div>
   );
 }
+
 
 function Home() {
   const [loading, setLoading] = useState(true);
