@@ -154,10 +154,16 @@ function Loader() {
 
 function Home() {
   const [loading, setLoading] = useState(true);
+  const { startIntro, endIntro } = useIntro();
+
   useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 1300);
+    startIntro();
+    const t = setTimeout(() => {
+      setLoading(false);
+      endIntro();
+    }, 1300);
     return () => clearTimeout(t);
-  }, []);
+  }, [startIntro, endIntro]);
 
   return (
     <>
