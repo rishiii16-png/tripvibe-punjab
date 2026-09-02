@@ -255,3 +255,27 @@
 @utility card-sheen {
   animation: card-sheen 0.9s ease-out forwards;
 }
+
+/* ---- Animated brand logo ---- */
+@keyframes logo-orbit {
+  to { transform: rotate(360deg); }
+}
+@keyframes logo-sheen {
+  0%, 65% { transform: translateX(0) skewX(-12deg); }
+  100% { transform: translateX(320%) skewX(-12deg); }
+}
+@keyframes logo-shimmer {
+  0% { background-position: 180% 0; }
+  100% { background-position: -80% 0; }
+}
+@utility logo-orbit {
+  animation: logo-orbit 6s linear infinite;
+  transform-origin: 50% 50%;
+}
+@utility logo-sheen {
+  animation: logo-sheen 3.4s ease-in-out infinite;
+}
+@utility logo-shimmer {
+  background-size: 250% 100%;
+  animation: logo-shimmer 4.5s ease-in-out infinite;
+}
