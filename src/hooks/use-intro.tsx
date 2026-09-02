@@ -30,10 +30,15 @@ export function IntroProvider({ children }: { children: ReactNode }) {
   );
 }
 
+const noop = () => {};
+const fallback: IntroContextValue = {
+  isIntroLoading: false,
+  setIntroLoading: noop,
+  startIntro: noop,
+  endIntro: noop,
+};
+
 export function useIntro() {
   const ctx = useContext(IntroContext);
-  if (!ctx) {
-    throw new Error("useIntro must be used within an IntroProvider");
-  }
-  return ctx;
+  return ctx ?? fallback;
 }
