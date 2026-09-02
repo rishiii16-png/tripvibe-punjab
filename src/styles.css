@@ -246,3 +246,12 @@
 @utility speed-streak {
   animation: speed-streak 0.8s linear infinite;
 }
+
+/* ---- Card sheen sweep ---- */
+@keyframes card-sheen {
+  0% { transform: translateX(0) skewX(-12deg); }
+  100% { transform: translateX(420%) skewX(-12deg); }
+}
+@utility card-sheen {
+  animation: card-sheen 0.9s ease-out forwards;
+}
