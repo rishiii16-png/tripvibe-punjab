@@ -13,6 +13,7 @@ import {
 import heroRoad from "@/assets/hero-road.jpg";
 import { trips, vehicles, reviews } from "@/data/site";
 import { Stars } from "@/components/stars";
+import { useIntro } from "@/hooks/use-intro";
 
 export const Route = createFileRoute("/")({
   head: () => ({
