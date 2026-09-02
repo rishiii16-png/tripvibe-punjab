@@ -3,6 +3,7 @@ import { Menu, X, Phone } from "lucide-react";
 import { useState } from "react";
 import { whatsappLink } from "@/data/site";
 import { BrandLogo } from "@/components/brand-logo";
+import { useIntro } from "@/hooks/use-intro";
 
 
 const links = [
@@ -15,11 +16,16 @@ const links = [
 
 export function SiteNav() {
   const [open, setOpen] = useState(false);
+  const { isIntroLoading } = useIntro();
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
-        <Link to="/" aria-label="RideVibe home">
+        <Link
+          to="/"
+          aria-label="RideVibe home"
+          className={`transition-opacity duration-500 ${isIntroLoading ? "pointer-events-none opacity-0" : "opacity-100"}`}
+        >
           <BrandLogo />
         </Link>
 

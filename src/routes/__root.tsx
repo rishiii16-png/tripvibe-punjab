@@ -15,6 +15,7 @@ import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { EmergencyButton } from "@/components/emergency-button";
 import { Toaster } from "@/components/ui/sonner";
+import { IntroProvider } from "@/hooks/use-intro";
 
 function NotFoundComponent() {
   return (
@@ -127,15 +128,17 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex min-h-screen flex-col">
-        <SiteNav />
-        <main className="flex-1">
-          <Outlet />
-        </main>
-        <SiteFooter />
-        <EmergencyButton />
-        <Toaster position="top-center" />
-      </div>
+      <IntroProvider>
+        <div className="flex min-h-screen flex-col">
+          <SiteNav />
+          <main className="flex-1">
+            <Outlet />
+          </main>
+          <SiteFooter />
+          <EmergencyButton />
+          <Toaster position="top-center" />
+        </div>
+      </IntroProvider>
     </QueryClientProvider>
   );
 }

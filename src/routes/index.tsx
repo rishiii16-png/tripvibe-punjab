@@ -13,6 +13,7 @@ import {
 import heroRoad from "@/assets/hero-road.jpg";
 import { trips, vehicles, reviews } from "@/data/site";
 import { Stars } from "@/components/stars";
+import { useIntro } from "@/hooks/use-intro";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -153,10 +154,16 @@ function Loader() {
 
 function Home() {
   const [loading, setLoading] = useState(true);
+  const { startIntro, endIntro } = useIntro();
+
   useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 1300);
+    startIntro();
+    const t = setTimeout(() => {
+      setLoading(false);
+      endIntro();
+    }, 1300);
     return () => clearTimeout(t);
-  }, []);
+  }, [startIntro, endIntro]);
 
   return (
     <>
