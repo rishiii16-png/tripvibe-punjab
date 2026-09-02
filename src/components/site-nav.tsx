@@ -3,6 +3,7 @@ import { Menu, X, Phone } from "lucide-react";
 import { useState } from "react";
 import { whatsappLink } from "@/data/site";
 import { BrandLogo } from "@/components/brand-logo";
+import { useIntro } from "@/hooks/use-intro";
 
 
 const links = [
