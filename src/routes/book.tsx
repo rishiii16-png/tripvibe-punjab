@@ -36,8 +36,8 @@ type Mode = "vehicle" | "trip";
 function BookPage() {
   const search = Route.useSearch();
   const [mode, setMode] = useState<Mode>(search.trip ? "trip" : "vehicle");
-  const [vehicleId, setVehicleId] = useState(search.vehicle ?? vehicles[0].id);
-  const [tripId, setTripId] = useState(search.trip ?? trips[0].id);
+  const [vehicleId, setVehicleId] = useState(search.vehicle ?? vehicles[0]!.id);
+  const [tripId, setTripId] = useState(search.trip ?? trips[0]!.id);
   const [days, setDays] = useState(2);
   const [people, setPeople] = useState(4);
   const [drive, setDrive] = useState("Self-drive");
@@ -120,7 +120,7 @@ Total: ₹${total.toLocaleString("en-IN")}${
                     onChange={(e) => {
                       setVehicleId(e.target.value);
                       const v = vehicles.find((x) => x.id === e.target.value)!;
-                      setDrive(v.driveOptions[0]);
+                      setDrive(v.driveOptions[0] ?? "Self-drive");
                     }}
                     className={inputCls}
                   >

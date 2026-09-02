@@ -26,7 +26,7 @@ export const Route = createFileRoute("/reviews")({
 });
 
 function ReviewsPage() {
-  const [list, setList] = useState<(Review & { photo?: string })[]>(seedReviews);
+  const [list, setList] = useState<(Review & { photo?: string | undefined })[]>(seedReviews);
   const [rating, setRating] = useState(5);
   const [hover, setHover] = useState(0);
   const [name, setName] = useState("");
