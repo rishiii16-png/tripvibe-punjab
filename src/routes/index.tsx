@@ -283,21 +283,36 @@ function Home() {
               { icon: Bike, label: "Bike", from: 349, note: "Activa, Classic 350, Himalayan" },
               { icon: Car, label: "Car", from: 1799, note: "Dzire, Ertiga, Innova" },
               { icon: Bus, label: "Bus", from: 7499, note: "17 & 35 seaters for whole batch" },
-            ].map((c) => (
+            ].map((c, i) => (
               <Link
                 key={c.label}
                 to="/vehicles"
-                className="card-hover group rounded-xl border border-border bg-card p-8"
+                style={{ animationDelay: `${i * 110}ms` }}
+                className="rise card-hover group relative isolate overflow-hidden rounded-xl border border-border bg-card p-8 transition-[transform,border-color,box-shadow] duration-500 hover:-translate-y-1.5 hover:border-primary/60 hover:shadow-[0_20px_50px_-20px_color-mix(in_oklab,var(--primary)_60%,transparent)]"
               >
-                <c.icon className="h-8 w-8 text-primary transition-transform group-hover:scale-110" />
+                {/* sheen sweep */}
+                <span className="pointer-events-none absolute inset-y-0 -left-1/3 z-10 w-1/3 -skew-x-12 bg-[linear-gradient(90deg,transparent,color-mix(in_oklab,var(--primary)_18%,transparent),transparent)] opacity-0 transition-none group-hover:opacity-100 group-hover:card-sheen" />
+                {/* glow wash */}
+                <span className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-primary/10 blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+                <div className="relative flex items-center justify-between">
+                  <c.icon className="h-9 w-9 text-primary transition-transform duration-500 ease-out group-hover:translate-x-1.5 group-hover:-rotate-3 group-hover:scale-110" />
+                  <ArrowRight className="h-5 w-5 -translate-x-2 text-primary opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100" />
+                </div>
+
                 <h3 className="mt-5 text-3xl">{c.label}</h3>
                 <p className="mt-1 text-sm text-muted-foreground">{c.note}</p>
                 <p className="mt-4 font-display text-2xl">
                   From <span className="text-primary">₹{c.from}</span>
                   <span className="text-sm text-muted-foreground"> /day (student)</span>
                 </p>
+
+                {/* animated road underline */}
+                <span className="pointer-events-none absolute inset-x-8 bottom-5 h-px scale-x-0 origin-left bg-primary/60 transition-transform duration-500 ease-out group-hover:scale-x-100" />
+                <span className="pointer-events-none absolute inset-x-8 bottom-5 h-px opacity-0 road-lines transition-opacity duration-500 group-hover:opacity-100" />
               </Link>
             ))}
+
           </div>
           <p className="mt-6 text-sm text-muted-foreground">
             {vehicles.reduce((n, v) => n + v.available, 0)} vehicles available right now
