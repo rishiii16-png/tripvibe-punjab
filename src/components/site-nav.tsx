@@ -2,6 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X, Phone } from "lucide-react";
 import { useState } from "react";
 import { whatsappLink } from "@/data/site";
+import { BrandLogo } from "@/components/brand-logo";
+
 
 const links = [
   { to: "/", label: "Home" },
