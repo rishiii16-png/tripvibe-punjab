@@ -196,3 +196,53 @@
     transition-duration: 0.001ms !important;
   }
 }
+
+/* ---- Intro: car full of friends ---- */
+@keyframes car-drive-in {
+  0% { transform: translateX(-140%) }
+  70% { transform: translateX(6%) }
+  100% { transform: translateX(0) }
+}
+@keyframes car-bounce {
+  0%, 100% { transform: translateY(0) rotate(0deg) }
+  25% { transform: translateY(-2px) rotate(-0.4deg) }
+  75% { transform: translateY(2px) rotate(0.4deg) }
+}
+@keyframes wheel-spin {
+  to { transform: rotate(360deg) }
+}
+@keyframes friend-bob {
+  0%, 100% { transform: translateY(0) }
+  50% { transform: translateY(-3px) }
+}
+@keyframes wave-hand {
+  0%, 100% { transform: rotate(-18deg) }
+  50% { transform: rotate(22deg) }
+}
+@keyframes speed-streak {
+  0% { transform: translateX(40px); opacity: 0 }
+  40% { opacity: 1 }
+  100% { transform: translateX(-260px); opacity: 0 }
+}
+
+@utility car-drive {
+  animation: car-drive-in 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@utility car-bounce {
+  animation: car-bounce 0.45s ease-in-out infinite;
+}
+@utility wheel-spin {
+  animation: wheel-spin 0.5s linear infinite;
+  transform-origin: center;
+}
+@utility friend-bob {
+  animation: friend-bob 0.6s ease-in-out infinite;
+  transform-origin: center;
+}
+@utility wave-hand {
+  animation: wave-hand 0.32s ease-in-out infinite;
+  transform-origin: 0% 100%;
+}
+@utility speed-streak {
+  animation: speed-streak 0.8s linear infinite;
+}
