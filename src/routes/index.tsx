@@ -155,6 +155,7 @@ function Loader() {
 function Home() {
   const [loading, setLoading] = useState(true);
   const { startIntro, endIntro } = useIntro();
+  const featured = trips[0]!;
 
   useEffect(() => {
     startIntro();
@@ -239,8 +240,8 @@ function Home() {
           >
             <div className="relative aspect-square overflow-hidden rounded-[3rem] bg-primary shadow-2xl shadow-primary/30">
               <img
-                src={trips[0].image}
-                alt={trips[0].title}
+                src={featured.image}
+                alt={featured.title}
                 width={1024}
                 height={768}
                 className="absolute inset-0 h-full w-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-110"
@@ -250,10 +251,10 @@ function Home() {
                 <span className="mb-2 block text-xs uppercase tracking-widest opacity-80">
                   Featured trip
                 </span>
-                <h3 className="text-3xl">{trips[0].title}</h3>
+                <h3 className="text-3xl">{featured.title}</h3>
                 <p className="mt-1 text-sm opacity-90">
-                  {trips[0].nights} · {trips[0].seatsLeft} seats left · ₹
-                  {trips[0].perHead}/head
+                  {featured.nights} · {featured.seatsLeft} seats left · ₹
+                  {featured.perHead}/head
                 </p>
               </div>
             </div>
