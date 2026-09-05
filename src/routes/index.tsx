@@ -421,29 +421,41 @@ function Home() {
         </div>
       </section>
 
-      {/* Reviews teaser */}
-      <section className="border-t border-border/60 bg-surface">
-        <div className="mx-auto max-w-6xl px-4 py-20">
-          <h2 className="text-4xl sm:text-5xl">Sirf students ke reviews</h2>
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
-            {reviews.slice(0, 3).map((r) => (
-              <div
-                key={r.id}
-                className="card-hover rounded-xl border border-border bg-card p-6"
-              >
-                <Stars value={r.rating} />
-                <p className="mt-3 text-sm text-muted-foreground">"{r.text}"</p>
-                <p className="mt-4 text-sm font-semibold">{r.name}</p>
-                <p className="text-xs text-muted-foreground">{r.college}</p>
-              </div>
-            ))}
+      {/* Reviews teaser — dark spruce panel */}
+      <section className="mx-auto max-w-6xl px-4 py-20">
+        <div className="relative overflow-hidden rounded-[3rem] bg-primary px-6 py-16 sm:px-12">
+          <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-primary-foreground/5 blur-3xl" />
+          <div className="relative">
+            <h2 className="text-4xl text-primary-foreground sm:text-5xl">
+              Sirf students ke reviews
+            </h2>
+            <p className="mt-2 text-primary-foreground/70">
+              Real trips. Real hostel stories.
+            </p>
+            <div className="mt-10 grid gap-4 md:grid-cols-3">
+              {reviews.slice(0, 3).map((r) => (
+                <div
+                  key={r.id}
+                  className="rounded-[2rem] border border-primary-foreground/15 bg-primary-foreground/10 p-6 backdrop-blur transition-transform duration-500 hover:-translate-y-1.5"
+                >
+                  <Stars value={r.rating} />
+                  <p className="mt-3 text-sm text-primary-foreground/80">
+                    "{r.text}"
+                  </p>
+                  <p className="mt-4 text-sm font-semibold text-primary-foreground">
+                    {r.name}
+                  </p>
+                  <p className="text-xs text-primary-foreground/60">{r.college}</p>
+                </div>
+              ))}
+            </div>
+            <Link
+              to="/reviews"
+              className="mt-8 inline-flex rounded-2xl bg-primary-foreground px-5 py-3 text-sm font-bold text-primary transition-transform hover:scale-105"
+            >
+              Read all reviews &amp; add yours
+            </Link>
           </div>
-          <Link
-            to="/reviews"
-            className="mt-8 inline-flex rounded-md border border-border px-5 py-3 text-sm font-semibold transition-colors hover:border-primary/60"
-          >
-            Read all reviews &amp; add yours
-          </Link>
         </div>
       </section>
     </>
