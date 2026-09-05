@@ -9,7 +9,7 @@ export function Stars({ value, size = 16 }: { value: number; size?: number }) {
           style={{ width: size, height: size }}
           className={
             i <= Math.round(value)
-              ? "fill-primary text-primary"
+              ? "fill-ember text-ember"
               : "text-muted-foreground/40"
           }
         />
