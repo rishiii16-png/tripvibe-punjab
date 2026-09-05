@@ -18,6 +18,18 @@ const links = [
 export function SiteNav() {
   const [open, setOpen] = useState(false);
   const { isIntroLoading } = useIntro();
+  const { theme, toggleTheme } = useTheme();
+
+  const themeToggle = (
+    <button
+      onClick={toggleTheme}
+      aria-label={theme === "dark" ? "Switch to day theme" : "Switch to night theme"}
+      title={theme === "dark" ? "Day theme" : "Night theme"}
+      className="ml-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/70 bg-surface text-muted-foreground transition-all hover:border-primary/50 hover:text-primary"
+    >
+      {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+    </button>
+  );
 
   return (
     <header className="sticky top-3 z-50 px-4">
