@@ -1,9 +1,10 @@
 import { Link } from "@tanstack/react-router";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, Sun, Moon } from "lucide-react";
 import { useState } from "react";
 import { whatsappLink } from "@/data/site";
 import { BrandLogo } from "@/components/brand-logo";
 import { useIntro } from "@/hooks/use-intro";
+import { useTheme } from "@/hooks/use-theme";
 
 
 const links = [
@@ -17,6 +18,18 @@ const links = [
 export function SiteNav() {
   const [open, setOpen] = useState(false);
   const { isIntroLoading } = useIntro();
+  const { theme, toggleTheme } = useTheme();
+
+  const themeToggle = (
+    <button
+      onClick={toggleTheme}
+      aria-label={theme === "dark" ? "Switch to day theme" : "Switch to night theme"}
+      title={theme === "dark" ? "Day theme" : "Night theme"}
+      className="ml-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/70 bg-surface text-muted-foreground transition-all hover:border-primary/50 hover:text-primary"
+    >
+      {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+    </button>
+  );
 
   return (
     <header className="sticky top-3 z-50 px-4">
@@ -50,15 +63,19 @@ export function SiteNav() {
           >
             <Phone className="h-4 w-4" /> WhatsApp
           </a>
+          {themeToggle}
         </nav>
 
-        <button
-          onClick={() => setOpen((v) => !v)}
-          className="rounded-md p-2 text-foreground md:hidden"
-          aria-label="Toggle menu"
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="flex items-center gap-1 md:hidden">
+          {themeToggle}
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="rounded-md p-2 text-foreground"
+            aria-label="Toggle menu"
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
       {open && (

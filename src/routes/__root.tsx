@@ -16,6 +16,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { EmergencyButton } from "@/components/emergency-button";
 import { Toaster } from "@/components/ui/sonner";
 import { IntroProvider } from "@/hooks/use-intro";
+import { ThemeProvider } from "@/hooks/use-theme";
 
 function NotFoundComponent() {
   return (
@@ -79,6 +80,12 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
+    scripts: [
+      {
+        children:
+          "try{var t=localStorage.getItem('ridevibe-theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark')}}catch(e){}",
+      },
+    ],
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -128,7 +135,8 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <IntroProvider>
+      <ThemeProvider>
+        <IntroProvider>
         <div className="flex min-h-screen flex-col">
           <SiteNav />
           <main className="flex-1">
@@ -138,7 +146,8 @@ function RootComponent() {
           <EmergencyButton />
           <Toaster position="top-center" />
         </div>
-      </IntroProvider>
+        </IntroProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }
