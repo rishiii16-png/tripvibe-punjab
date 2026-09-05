@@ -10,7 +10,7 @@ import {
   Bus,
   ArrowRight,
 } from "lucide-react";
-import heroRoad from "@/assets/hero-road.jpg";
+
 import { trips, vehicles, reviews } from "@/data/site";
 import { Stars } from "@/components/stars";
 import { useIntro } from "@/hooks/use-intro";
@@ -263,43 +263,68 @@ function Home() {
       </section>
 
       {/* Why */}
-      <section className="mx-auto max-w-6xl px-4 py-20">
-        <h2 className="text-4xl sm:text-5xl">Not just a rental site</h2>
-        <p className="mt-2 max-w-xl text-muted-foreground">
-          RideVibe is built only for students — pricing, groups and safety included.
-        </p>
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            {
-              icon: BadgePercent,
-              title: "Student-only pricing",
-              body: "Upload your college ID once, unlock up to 20% off every booking.",
-            },
-            {
-              icon: Users,
-              title: "Group trip matching",
-              body: "Seat khali hai? Join another college group and split the fare.",
-            },
-            {
-              icon: MapPinned,
-              title: "Pre-planned trips",
-              body: "Kasol, Manali, Amritsar — fixed price, fixed dates, zero planning.",
-            },
-            {
-              icon: ShieldCheck,
-              title: "Verified drivers",
-              body: "Aadhaar + licence checked, live location share, SOS button.",
-            },
-          ].map((f) => (
-            <div
-              key={f.title}
-              className="card-hover rounded-xl border border-border bg-card p-6"
-            >
-              <f.icon className="h-6 w-6 text-primary" />
-              <h3 className="mt-4 text-2xl">{f.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{f.body}</p>
-            </div>
-          ))}
+      <section className="bg-surface">
+        <div className="mx-auto max-w-6xl px-4 py-20">
+          <p className="text-xs font-bold uppercase tracking-widest text-primary">
+            The RideVibe advantage
+          </p>
+          <h2 className="mt-2 text-4xl sm:text-5xl">Not just a rental site</h2>
+          <p className="mt-2 max-w-xl text-muted-foreground">
+            RideVibe is built only for students — pricing, groups and safety included.
+          </p>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                icon: BadgePercent,
+                title: "Student-only pricing",
+                body: "Upload your college ID once, unlock up to 20% off every booking.",
+              },
+              {
+                icon: Users,
+                title: "Group trip matching",
+                body: "Seat khali hai? Join another college group and split the fare.",
+              },
+              {
+                icon: MapPinned,
+                title: "Pre-planned trips",
+                body: "Kasol, Manali, Amritsar — fixed price, fixed dates, zero planning.",
+              },
+              {
+                icon: ShieldCheck,
+                title: "Verified drivers",
+                body: "Aadhaar + licence checked, live location share, SOS button.",
+              },
+            ].map((f, i) => (
+              <div
+                key={f.title}
+                className={
+                  i === 1
+                    ? "card-hover rounded-[2rem] bg-primary p-7 text-primary-foreground shadow-xl shadow-primary/25"
+                    : "card-hover rounded-[2rem] border border-border bg-background p-7"
+                }
+              >
+                <span
+                  className={`grid h-12 w-12 place-items-center rounded-2xl ${
+                    i === 1
+                      ? "bg-primary-foreground/10"
+                      : "bg-primary/10"
+                  }`}
+                >
+                  <f.icon
+                    className={`h-6 w-6 ${i === 1 ? "text-ember" : "text-primary"}`}
+                  />
+                </span>
+                <h3 className="mt-4 text-2xl">{f.title}</h3>
+                <p
+                  className={`mt-2 text-sm ${
+                    i === 1 ? "text-primary-foreground/80" : "text-muted-foreground"
+                  }`}
+                >
+                  {f.body}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -322,7 +347,7 @@ function Home() {
                 key={c.label}
                 to="/vehicles"
                 style={{ animationDelay: `${i * 110}ms` }}
-                className="rise card-hover group relative isolate overflow-hidden rounded-xl border border-border bg-card p-8 transition-[transform,border-color,box-shadow] duration-500 hover:-translate-y-1.5 hover:border-primary/60 hover:shadow-[0_20px_50px_-20px_color-mix(in_oklab,var(--primary)_60%,transparent)]"
+                className="rise card-hover group relative isolate overflow-hidden rounded-[2rem] border border-border bg-card p-8 transition-[transform,border-color,box-shadow] duration-500 hover:-translate-y-1.5 hover:border-primary/60 hover:shadow-[0_20px_50px_-20px_color-mix(in_oklab,var(--primary)_60%,transparent)]"
               >
                 {/* sheen sweep */}
                 <span className="pointer-events-none absolute inset-y-0 -left-1/3 z-10 w-1/3 -skew-x-12 bg-[linear-gradient(90deg,transparent,color-mix(in_oklab,var(--primary)_18%,transparent),transparent)] opacity-0 transition-none group-hover:opacity-100 group-hover:card-sheen" />
@@ -368,7 +393,7 @@ function Home() {
             <Link
               key={t.id}
               to="/trips"
-              className="card-hover group overflow-hidden rounded-xl border border-border bg-card"
+              className="card-hover group overflow-hidden rounded-3xl border border-border bg-card"
             >
               <div className="relative h-44 overflow-hidden">
                 <img
