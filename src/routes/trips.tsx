@@ -43,7 +43,7 @@ function TripsPage() {
           max={12}
           value={group}
           onChange={(e) => setGroup(Number(e.target.value))}
-          className="w-48 accent-[oklch(0.58_0.23_27)]"
+          className="w-48 accent-primary"
           aria-label="Number of friends"
         />
         <span className="font-display text-2xl text-primary">{group}</span>

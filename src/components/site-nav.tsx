@@ -19,8 +19,8 @@ export function SiteNav() {
   const { isIntroLoading } = useIntro();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
+    <header className="sticky top-3 z-50 px-4">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between rounded-2xl border border-border/70 bg-card/70 px-5 shadow-sm backdrop-blur-xl">
         <Link
           to="/"
           aria-label="RideVibe home"
@@ -46,7 +46,7 @@ export function SiteNav() {
             href={whatsappLink("Hi RideVibe! I want to book a ride.")}
             target="_blank"
             rel="noreferrer"
-            className="ml-2 inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105 glow-pulse"
+            className="ml-2 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground shadow-md shadow-primary/20 transition-transform hover:scale-105"
           >
             <Phone className="h-4 w-4" /> WhatsApp
           </a>
@@ -62,7 +62,7 @@ export function SiteNav() {
       </div>
 
       {open && (
-        <nav className="border-t border-border/60 bg-background px-4 py-3 md:hidden">
+        <nav className="mx-auto mt-2 max-w-6xl rounded-2xl border border-border/70 bg-card/95 px-4 py-3 shadow-lg backdrop-blur-xl md:hidden">
           {links.map((l) => (
             <Link
               key={l.to}

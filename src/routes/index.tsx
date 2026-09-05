@@ -10,7 +10,7 @@ import {
   Bus,
   ArrowRight,
 } from "lucide-react";
-import heroRoad from "@/assets/hero-road.jpg";
+
 import { trips, vehicles, reviews } from "@/data/site";
 import { Stars } from "@/components/stars";
 import { useIntro } from "@/hooks/use-intro";
@@ -155,6 +155,7 @@ function Loader() {
 function Home() {
   const [loading, setLoading] = useState(true);
   const { startIntro, endIntro } = useIntro();
+  const featured = trips[0]!;
 
   useEffect(() => {
     startIntro();
@@ -169,110 +170,162 @@ function Home() {
     <>
       {loading && <Loader />}
 
-      {/* Hero */}
+      {/* Hero — Mountain Glass: split layout, mist washes, featured trip card */}
       <section className="relative isolate overflow-hidden">
-        <img
-          src={heroRoad}
-          alt="Bikes and cars on a Punjab highway at night with red light trails"
-          width={1920}
-          height={1080}
-          className="absolute inset-0 h-full w-full object-cover opacity-60"
-        />
-        <div className="absolute inset-0 bg-[image:var(--gradient-night)]" />
-        <div className="absolute inset-x-0 bottom-24 h-px road-lines opacity-40" />
-        <div className="relative mx-auto flex min-h-[86vh] max-w-6xl flex-col justify-center px-4 py-24">
-          <span className="rise inline-flex w-fit items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-primary">
-            For Punjab college students
-          </span>
-          <h1
-            className="rise mt-6 max-w-3xl text-6xl leading-[0.95] sm:text-8xl"
-            style={{ animationDelay: "120ms" }}
-          >
-            Ride your <span className="text-gradient-ember">freedom</span>
-          </h1>
-          <p
-            className="rise mt-5 max-w-xl text-lg text-muted-foreground"
-            style={{ animationDelay: "240ms" }}
-          >
-            Plan trips. Split costs. Travel with your vibe. Student-only rates on bikes,
-            cars and buses — plus ready-made trips your whole hostel can join.
-          </p>
-          <div
-            className="rise mt-8 flex flex-wrap gap-3"
-            style={{ animationDelay: "360ms" }}
-          >
-            <Link
-              to="/book"
-              className="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 font-semibold text-primary-foreground transition-transform hover:scale-105 glow-pulse"
+        {/* mist washes */}
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--glacial)_55%,transparent),transparent_65%)]" />
+        <div className="absolute -left-24 top-8 -z-10 h-72 w-72 rounded-full bg-sage/25 blur-3xl" />
+        <div className="absolute -right-24 bottom-0 -z-10 h-72 w-72 rounded-full bg-ember/15 blur-3xl" />
+
+        <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 md:grid-cols-2 md:py-28">
+          <div>
+            <span className="rise inline-flex w-fit items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary">
+              Punjab's student travel platform
+            </span>
+            <h1
+              className="rise mt-6 text-6xl font-extrabold leading-[0.95] sm:text-7xl"
+              style={{ animationDelay: "120ms" }}
             >
-              Book now <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              to="/trips"
-              className="inline-flex items-center gap-2 rounded-md border border-border bg-surface/70 px-6 py-3 font-semibold backdrop-blur transition-colors hover:border-primary/60"
+              Ride your{" "}
+              <span className="text-gradient-ember italic">freedom</span>
+            </h1>
+            <p
+              className="rise mt-5 max-w-md text-lg leading-relaxed text-muted-foreground"
+              style={{ animationDelay: "240ms" }}
             >
-              See trips from ₹899
-            </Link>
+              Plan trips. Split costs. Travel with your vibe. Student-only rates on
+              bikes, cars and buses — plus ready-made trips your whole hostel can join.
+            </p>
+            <div
+              className="rise mt-8 flex flex-wrap gap-4"
+              style={{ animationDelay: "360ms" }}
+            >
+              <Link
+                to="/book"
+                className="inline-flex items-center gap-2 rounded-2xl bg-primary px-8 py-4 font-bold text-primary-foreground shadow-xl shadow-primary/25 transition-transform hover:scale-105"
+              >
+                Book your ride <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                to="/trips"
+                className="inline-flex items-center gap-2 rounded-2xl border border-border bg-card px-8 py-4 font-bold transition-colors hover:bg-secondary"
+              >
+                Trips from ₹899
+              </Link>
+            </div>
+            <div
+              className="rise mt-10 grid grid-cols-3 gap-6 border-t border-border pt-8"
+              style={{ animationDelay: "480ms" }}
+            >
+              {[
+                ["1,400+", "student rides"],
+                ["4.7★", "avg rating"],
+                ["100%", "verified drivers"],
+              ].map(([a, b]) => (
+                <div key={b}>
+                  <p className="font-display text-3xl font-bold text-primary">{a}</p>
+                  <p className="mt-1 text-xs font-medium uppercase tracking-widest text-muted-foreground">
+                    {b}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
-          <div
-            className="rise mt-12 grid max-w-2xl grid-cols-2 gap-6 sm:grid-cols-4"
-            style={{ animationDelay: "480ms" }}
+
+          {/* Featured trip visual */}
+          <Link
+            to="/trips"
+            className="rise group relative block"
+            style={{ animationDelay: "300ms" }}
           >
-            {[
-              ["1,400+", "student rides"],
-              ["₹500–3000", "budget range"],
-              ["4.7★", "avg rating"],
-              ["100%", "verified drivers"],
-            ].map(([a, b]) => (
-              <div key={b}>
-                <p className="font-display text-3xl text-primary">{a}</p>
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">
-                  {b}
+            <div className="relative aspect-square overflow-hidden rounded-[3rem] bg-primary shadow-2xl shadow-primary/30">
+              <img
+                src={featured.image}
+                alt={featured.title}
+                width={1024}
+                height={768}
+                className="absolute inset-0 h-full w-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(to_top,color-mix(in_oklab,var(--primary)_85%,transparent),transparent_55%)]" />
+              <div className="absolute bottom-8 left-8 right-8 text-primary-foreground">
+                <span className="mb-2 block text-xs uppercase tracking-widest opacity-80">
+                  Featured trip
+                </span>
+                <h3 className="text-3xl">{featured.title}</h3>
+                <p className="mt-1 text-sm opacity-90">
+                  {featured.nights} · {featured.seatsLeft} seats left · ₹
+                  {featured.perHead}/head
                 </p>
               </div>
-            ))}
-          </div>
+            </div>
+            <div className="absolute -right-12 -top-12 -z-10 h-48 w-48 rounded-full bg-sage/40 blur-3xl" />
+          </Link>
         </div>
       </section>
 
       {/* Why */}
-      <section className="mx-auto max-w-6xl px-4 py-20">
-        <h2 className="text-4xl sm:text-5xl">Not just a rental site</h2>
-        <p className="mt-2 max-w-xl text-muted-foreground">
-          RideVibe is built only for students — pricing, groups and safety included.
-        </p>
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            {
-              icon: BadgePercent,
-              title: "Student-only pricing",
-              body: "Upload your college ID once, unlock up to 20% off every booking.",
-            },
-            {
-              icon: Users,
-              title: "Group trip matching",
-              body: "Seat khali hai? Join another college group and split the fare.",
-            },
-            {
-              icon: MapPinned,
-              title: "Pre-planned trips",
-              body: "Kasol, Manali, Amritsar — fixed price, fixed dates, zero planning.",
-            },
-            {
-              icon: ShieldCheck,
-              title: "Verified drivers",
-              body: "Aadhaar + licence checked, live location share, SOS button.",
-            },
-          ].map((f) => (
-            <div
-              key={f.title}
-              className="card-hover rounded-xl border border-border bg-card p-6"
-            >
-              <f.icon className="h-6 w-6 text-primary" />
-              <h3 className="mt-4 text-2xl">{f.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{f.body}</p>
-            </div>
-          ))}
+      <section className="bg-surface">
+        <div className="mx-auto max-w-6xl px-4 py-20">
+          <p className="text-xs font-bold uppercase tracking-widest text-primary">
+            The RideVibe advantage
+          </p>
+          <h2 className="mt-2 text-4xl sm:text-5xl">Not just a rental site</h2>
+          <p className="mt-2 max-w-xl text-muted-foreground">
+            RideVibe is built only for students — pricing, groups and safety included.
+          </p>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                icon: BadgePercent,
+                title: "Student-only pricing",
+                body: "Upload your college ID once, unlock up to 20% off every booking.",
+              },
+              {
+                icon: Users,
+                title: "Group trip matching",
+                body: "Seat khali hai? Join another college group and split the fare.",
+              },
+              {
+                icon: MapPinned,
+                title: "Pre-planned trips",
+                body: "Kasol, Manali, Amritsar — fixed price, fixed dates, zero planning.",
+              },
+              {
+                icon: ShieldCheck,
+                title: "Verified drivers",
+                body: "Aadhaar + licence checked, live location share, SOS button.",
+              },
+            ].map((f, i) => (
+              <div
+                key={f.title}
+                className={
+                  i === 1
+                    ? "card-hover rounded-[2rem] bg-primary p-7 text-primary-foreground shadow-xl shadow-primary/25"
+                    : "card-hover rounded-[2rem] border border-border bg-background p-7"
+                }
+              >
+                <span
+                  className={`grid h-12 w-12 place-items-center rounded-2xl ${
+                    i === 1
+                      ? "bg-primary-foreground/10"
+                      : "bg-primary/10"
+                  }`}
+                >
+                  <f.icon
+                    className={`h-6 w-6 ${i === 1 ? "text-ember" : "text-primary"}`}
+                  />
+                </span>
+                <h3 className="mt-4 text-2xl">{f.title}</h3>
+                <p
+                  className={`mt-2 text-sm ${
+                    i === 1 ? "text-primary-foreground/80" : "text-muted-foreground"
+                  }`}
+                >
+                  {f.body}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -295,7 +348,7 @@ function Home() {
                 key={c.label}
                 to="/vehicles"
                 style={{ animationDelay: `${i * 110}ms` }}
-                className="rise card-hover group relative isolate overflow-hidden rounded-xl border border-border bg-card p-8 transition-[transform,border-color,box-shadow] duration-500 hover:-translate-y-1.5 hover:border-primary/60 hover:shadow-[0_20px_50px_-20px_color-mix(in_oklab,var(--primary)_60%,transparent)]"
+                className="rise card-hover group relative isolate overflow-hidden rounded-[2rem] border border-border bg-card p-8 transition-[transform,border-color,box-shadow] duration-500 hover:-translate-y-1.5 hover:border-primary/60 hover:shadow-[0_20px_50px_-20px_color-mix(in_oklab,var(--primary)_60%,transparent)]"
               >
                 {/* sheen sweep */}
                 <span className="pointer-events-none absolute inset-y-0 -left-1/3 z-10 w-1/3 -skew-x-12 bg-[linear-gradient(90deg,transparent,color-mix(in_oklab,var(--primary)_18%,transparent),transparent)] opacity-0 transition-none group-hover:opacity-100 group-hover:card-sheen" />
@@ -341,7 +394,7 @@ function Home() {
             <Link
               key={t.id}
               to="/trips"
-              className="card-hover group overflow-hidden rounded-xl border border-border bg-card"
+              className="card-hover group overflow-hidden rounded-3xl border border-border bg-card"
             >
               <div className="relative h-44 overflow-hidden">
                 <img
@@ -369,29 +422,41 @@ function Home() {
         </div>
       </section>
 
-      {/* Reviews teaser */}
-      <section className="border-t border-border/60 bg-surface">
-        <div className="mx-auto max-w-6xl px-4 py-20">
-          <h2 className="text-4xl sm:text-5xl">Sirf students ke reviews</h2>
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
-            {reviews.slice(0, 3).map((r) => (
-              <div
-                key={r.id}
-                className="card-hover rounded-xl border border-border bg-card p-6"
-              >
-                <Stars value={r.rating} />
-                <p className="mt-3 text-sm text-muted-foreground">"{r.text}"</p>
-                <p className="mt-4 text-sm font-semibold">{r.name}</p>
-                <p className="text-xs text-muted-foreground">{r.college}</p>
-              </div>
-            ))}
+      {/* Reviews teaser — dark spruce panel */}
+      <section className="mx-auto max-w-6xl px-4 py-20">
+        <div className="relative overflow-hidden rounded-[3rem] bg-primary px-6 py-16 sm:px-12">
+          <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-primary-foreground/5 blur-3xl" />
+          <div className="relative">
+            <h2 className="text-4xl text-primary-foreground sm:text-5xl">
+              Sirf students ke reviews
+            </h2>
+            <p className="mt-2 text-primary-foreground/70">
+              Real trips. Real hostel stories.
+            </p>
+            <div className="mt-10 grid gap-4 md:grid-cols-3">
+              {reviews.slice(0, 3).map((r) => (
+                <div
+                  key={r.id}
+                  className="rounded-[2rem] border border-primary-foreground/15 bg-primary-foreground/10 p-6 backdrop-blur transition-transform duration-500 hover:-translate-y-1.5"
+                >
+                  <Stars value={r.rating} />
+                  <p className="mt-3 text-sm text-primary-foreground/80">
+                    "{r.text}"
+                  </p>
+                  <p className="mt-4 text-sm font-semibold text-primary-foreground">
+                    {r.name}
+                  </p>
+                  <p className="text-xs text-primary-foreground/60">{r.college}</p>
+                </div>
+              ))}
+            </div>
+            <Link
+              to="/reviews"
+              className="mt-8 inline-flex rounded-2xl bg-primary-foreground px-5 py-3 text-sm font-bold text-primary transition-transform hover:scale-105"
+            >
+              Read all reviews &amp; add yours
+            </Link>
           </div>
-          <Link
-            to="/reviews"
-            className="mt-8 inline-flex rounded-md border border-border px-5 py-3 text-sm font-semibold transition-colors hover:border-primary/60"
-          >
-            Read all reviews &amp; add yours
-          </Link>
         </div>
       </section>
     </>

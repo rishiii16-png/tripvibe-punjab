@@ -237,7 +237,7 @@ Total: ₹${total.toLocaleString("en-IN")}${
                 type="checkbox"
                 checked={student}
                 onChange={(e) => setStudent(e.target.checked)}
-                className="h-4 w-4 accent-[oklch(0.58_0.23_27)]"
+                className="h-4 w-4 accent-primary"
               />
               I have a valid college ID (apply student discount — show ID at pickup)
             </label>
