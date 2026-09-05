@@ -63,6 +63,7 @@ export function SiteNav() {
           >
             <Phone className="h-4 w-4" /> WhatsApp
           </a>
+          {themeToggle}
         </nav>
 
         <button
