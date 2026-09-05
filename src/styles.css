@@ -82,6 +82,38 @@
   --shadow-card: 0 20px 50px -30px oklch(0.328 0.043 176.2 / 0.35);
 }
 
+/* Night drive theme — same Mountain Glass identity, lit for the dark. */
+.dark {
+  --background: oklch(0.2 0.018 176);
+  --foreground: oklch(0.95 0.008 130);
+  --surface: oklch(0.235 0.02 176);
+  --card: oklch(0.225 0.018 176);
+  --card-foreground: oklch(0.95 0.008 130);
+  --popover: oklch(0.225 0.018 176);
+  --popover-foreground: oklch(0.95 0.008 130);
+  --primary: oklch(0.72 0.075 165);
+  --primary-foreground: oklch(0.19 0.02 176);
+  --sage: oklch(0.701 0.056 142.5);
+  --glacial: oklch(0.75 0.03 248.1);
+  --ember: oklch(0.72 0.13 70);
+  --secondary: oklch(0.28 0.022 176);
+  --secondary-foreground: oklch(0.95 0.008 130);
+  --muted: oklch(0.27 0.02 176);
+  --muted-foreground: oklch(0.72 0.015 155);
+  --accent: oklch(0.29 0.024 165);
+  --accent-foreground: oklch(0.95 0.008 130);
+  --destructive: oklch(0.62 0.2 27);
+  --destructive-foreground: oklch(0.985 0 0);
+  --success: oklch(0.7 0.13 150);
+  --border: oklch(0.33 0.022 176);
+  --input: oklch(0.31 0.02 176);
+  --ring: oklch(0.72 0.075 165);
+
+  --shadow-glow: 0 1px 2px color-mix(in oklab, var(--primary) 10%, transparent),
+    0 16px 40px -16px color-mix(in oklab, var(--primary) 35%, transparent);
+  --shadow-card: 0 20px 50px -28px oklch(0 0 0 / 0.7);
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
