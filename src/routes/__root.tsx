@@ -140,7 +140,8 @@ function RootComponent() {
           <EmergencyButton />
           <Toaster position="top-center" />
         </div>
-      </IntroProvider>
+        </IntroProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }
