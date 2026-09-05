@@ -169,69 +169,96 @@ function Home() {
     <>
       {loading && <Loader />}
 
-      {/* Hero */}
+      {/* Hero — Mountain Glass: split layout, mist washes, featured trip card */}
       <section className="relative isolate overflow-hidden">
-        <img
-          src={heroRoad}
-          alt="Bikes and cars on a Punjab highway at night with red light trails"
-          width={1920}
-          height={1080}
-          className="absolute inset-0 h-full w-full object-cover opacity-60"
-        />
-        <div className="absolute inset-0 bg-[image:var(--gradient-night)]" />
-        <div className="absolute inset-x-0 bottom-24 h-px road-lines opacity-40" />
-        <div className="relative mx-auto flex min-h-[86vh] max-w-6xl flex-col justify-center px-4 py-24">
-          <span className="rise inline-flex w-fit items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-primary">
-            For Punjab college students
-          </span>
-          <h1
-            className="rise mt-6 max-w-3xl text-6xl leading-[0.95] sm:text-8xl"
-            style={{ animationDelay: "120ms" }}
-          >
-            Ride your <span className="text-gradient-ember">freedom</span>
-          </h1>
-          <p
-            className="rise mt-5 max-w-xl text-lg text-muted-foreground"
-            style={{ animationDelay: "240ms" }}
-          >
-            Plan trips. Split costs. Travel with your vibe. Student-only rates on bikes,
-            cars and buses — plus ready-made trips your whole hostel can join.
-          </p>
-          <div
-            className="rise mt-8 flex flex-wrap gap-3"
-            style={{ animationDelay: "360ms" }}
-          >
-            <Link
-              to="/book"
-              className="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 font-semibold text-primary-foreground transition-transform hover:scale-105 glow-pulse"
+        {/* mist washes */}
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--glacial)_55%,transparent),transparent_65%)]" />
+        <div className="absolute -left-24 top-8 -z-10 h-72 w-72 rounded-full bg-sage/25 blur-3xl" />
+        <div className="absolute -right-24 bottom-0 -z-10 h-72 w-72 rounded-full bg-ember/15 blur-3xl" />
+
+        <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 md:grid-cols-2 md:py-28">
+          <div>
+            <span className="rise inline-flex w-fit items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary">
+              Punjab's student travel platform
+            </span>
+            <h1
+              className="rise mt-6 text-6xl font-extrabold leading-[0.95] sm:text-7xl"
+              style={{ animationDelay: "120ms" }}
             >
-              Book now <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              to="/trips"
-              className="inline-flex items-center gap-2 rounded-md border border-border bg-surface/70 px-6 py-3 font-semibold backdrop-blur transition-colors hover:border-primary/60"
+              Ride your{" "}
+              <span className="text-gradient-ember italic">freedom</span>
+            </h1>
+            <p
+              className="rise mt-5 max-w-md text-lg leading-relaxed text-muted-foreground"
+              style={{ animationDelay: "240ms" }}
             >
-              See trips from ₹899
-            </Link>
+              Plan trips. Split costs. Travel with your vibe. Student-only rates on
+              bikes, cars and buses — plus ready-made trips your whole hostel can join.
+            </p>
+            <div
+              className="rise mt-8 flex flex-wrap gap-4"
+              style={{ animationDelay: "360ms" }}
+            >
+              <Link
+                to="/book"
+                className="inline-flex items-center gap-2 rounded-2xl bg-primary px-8 py-4 font-bold text-primary-foreground shadow-xl shadow-primary/25 transition-transform hover:scale-105"
+              >
+                Book your ride <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                to="/trips"
+                className="inline-flex items-center gap-2 rounded-2xl border border-border bg-card px-8 py-4 font-bold transition-colors hover:bg-secondary"
+              >
+                Trips from ₹899
+              </Link>
+            </div>
+            <div
+              className="rise mt-10 grid grid-cols-3 gap-6 border-t border-border pt-8"
+              style={{ animationDelay: "480ms" }}
+            >
+              {[
+                ["1,400+", "student rides"],
+                ["4.7★", "avg rating"],
+                ["100%", "verified drivers"],
+              ].map(([a, b]) => (
+                <div key={b}>
+                  <p className="font-display text-3xl font-bold text-primary">{a}</p>
+                  <p className="mt-1 text-xs font-medium uppercase tracking-widest text-muted-foreground">
+                    {b}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
-          <div
-            className="rise mt-12 grid max-w-2xl grid-cols-2 gap-6 sm:grid-cols-4"
-            style={{ animationDelay: "480ms" }}
+
+          {/* Featured trip visual */}
+          <Link
+            to="/trips"
+            className="rise group relative block"
+            style={{ animationDelay: "300ms" }}
           >
-            {[
-              ["1,400+", "student rides"],
-              ["₹500–3000", "budget range"],
-              ["4.7★", "avg rating"],
-              ["100%", "verified drivers"],
-            ].map(([a, b]) => (
-              <div key={b}>
-                <p className="font-display text-3xl text-primary">{a}</p>
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">
-                  {b}
+            <div className="relative aspect-square overflow-hidden rounded-[3rem] bg-primary shadow-2xl shadow-primary/30">
+              <img
+                src={trips[0].image}
+                alt={trips[0].title}
+                width={1024}
+                height={768}
+                className="absolute inset-0 h-full w-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(to_top,color-mix(in_oklab,var(--primary)_85%,transparent),transparent_55%)]" />
+              <div className="absolute bottom-8 left-8 right-8 text-primary-foreground">
+                <span className="mb-2 block text-xs uppercase tracking-widest opacity-80">
+                  Featured trip
+                </span>
+                <h3 className="text-3xl">{trips[0].title}</h3>
+                <p className="mt-1 text-sm opacity-90">
+                  {trips[0].nights} · {trips[0].seatsLeft} seats left · ₹
+                  {trips[0].perHead}/head
                 </p>
               </div>
-            ))}
-          </div>
+            </div>
+            <div className="absolute -right-12 -top-12 -z-10 h-48 w-48 rounded-full bg-sage/40 blur-3xl" />
+          </Link>
         </div>
       </section>
 
