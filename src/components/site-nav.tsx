@@ -66,13 +66,16 @@ export function SiteNav() {
           {themeToggle}
         </nav>
 
-        <button
-          onClick={() => setOpen((v) => !v)}
-          className="rounded-md p-2 text-foreground md:hidden"
-          aria-label="Toggle menu"
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="flex items-center gap-1 md:hidden">
+          {themeToggle}
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="rounded-md p-2 text-foreground"
+            aria-label="Toggle menu"
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
       {open && (
