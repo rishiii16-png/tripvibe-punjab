@@ -16,6 +16,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { EmergencyButton } from "@/components/emergency-button";
 import { Toaster } from "@/components/ui/sonner";
 import { IntroProvider } from "@/hooks/use-intro";
+import { ThemeProvider } from "@/hooks/use-theme";
 
 function NotFoundComponent() {
   return (
