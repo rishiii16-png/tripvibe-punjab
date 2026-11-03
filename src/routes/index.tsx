@@ -13,6 +13,7 @@ import {
 
 import { trips, vehicles, reviews } from "@/data/site";
 import { Stars } from "@/components/stars";
+import { SearchBar } from "@/components/search-bar";
 import { useIntro } from "@/hooks/use-intro";
 
 export const Route = createFileRoute("/")({
@@ -212,6 +213,12 @@ function Home() {
               >
                 Trips from ₹899
               </Link>
+            </div>
+            <div
+              className="rise mt-6"
+              style={{ animationDelay: "420ms" }}
+            >
+              <SearchBar />
             </div>
             <div
               className="rise mt-10 grid grid-cols-3 gap-6 border-t border-border pt-8"

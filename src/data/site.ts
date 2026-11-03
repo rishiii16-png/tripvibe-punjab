@@ -10,6 +10,26 @@ export function whatsappLink(message: string) {
 
 export type VehicleType = "Car" | "Bike" | "Bus";
 
+export type City = {
+  name: string;
+  colleges: string;
+};
+
+export const cities: City[] = [
+  { name: "Patiala", colleges: "Thapar, Punjabi University" },
+  { name: "Ludhiana", colleges: "PAU, GNE" },
+  { name: "Jalandhar", colleges: "LPU, NIT Jalandhar" },
+  { name: "Chandigarh", colleges: "PU, PEC, Chitkara" },
+  { name: "Amritsar", colleges: "GNDU" },
+  { name: "Bathinda", colleges: "Giani Zail Singh, CUP" },
+  { name: "Mohali", colleges: "CGC Landran, ISB" },
+  { name: "Phagwara", colleges: "LPU (main campus)" },
+  { name: "Hoshiarpur", colleges: "Rayat Bahra, DAV" },
+  { name: "Pathankot", colleges: "Sri Sai University" },
+  { name: "Sangrur", colleges: "Bhai Gurdas Group" },
+  { name: "Moga", colleges: "Lala Lajpat Rai" },
+];
+
 export type Vehicle = {
   id: string;
   name: string;
